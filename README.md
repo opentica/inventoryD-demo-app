@@ -16,6 +16,9 @@ docker run --name=mysql-standalone -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password 
 ```
 # spring-boot Docker Image
 
+## Download Java App Agent
+Download AppServerAgen.zip file from the controller getting started Screen 
+
 ## Build spring-boot Docker Image
 
 ```
