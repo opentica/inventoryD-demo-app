@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Product POJO class to contain the product specific data
+ *
+ */
 @Entity
 public class ProductInfo {
 	@Id

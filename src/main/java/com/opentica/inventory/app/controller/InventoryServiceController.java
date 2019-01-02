@@ -14,25 +14,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.opentica.inventory.app.bean.ProductInfo;
 import com.opentica.inventory.app.bean.ProductRepository;
+import com.opentica.inventory.app.helper.MessageProducerHelper;
 
 /**
  * Controller for CRUD operations on the product inventory
  *
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/product/")
 public class InventoryServiceController {
 	@Autowired
-	ProductRepository productRepository;
+	private ProductRepository productRepository;
+
+	@Autowired
+	private MessageProducerHelper messageProducerHelper;
+
 
 	/**
 	 * API to get list of all available products
 	 * 
 	 * @return
 	 */
-	@GetMapping("/products")
+	@GetMapping("/getProducts")
 	public List<ProductInfo> getAllProducts() {
-	    return productRepository.findAll();
+		return productRepository.findAll();
 	}
 
 	/**
@@ -43,7 +48,9 @@ public class InventoryServiceController {
 	 */
 	@PostMapping("/addProduct")
 	public ProductInfo addProduct(@Valid @RequestBody ProductInfo productInfo) {
-	    return productRepository.save(productInfo);
+		ProductInfo info =  productRepository.save(productInfo);
+	    messageProducerHelper.sendProductInfo(info);
+	    return info;
 	}
 	
 	/**
