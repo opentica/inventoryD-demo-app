@@ -1,12 +1,8 @@
-# To Build the project from source file
-- Import maven project in the eclipse
-- Change the database configuration as per your need in the application.properties
-- Build the project using maven/eclipse
 
-## Download Java App Agent
+# Download Java App Agent
 Download AppServerAgen.zip file from the controller getting started Screen 
 
-## Build and start the application
+# Build and start the application
 
 
 ```
@@ -45,3 +41,9 @@ Delete Specific Product: DELETE Method with http://localhost:8080/api/product/de
 ```
 
 Delete All Products: Delete method with URL http://localhost:8080/api/product/deleteAll
+
+
+# To Build the project from source file
+- Import maven project in the eclipse
+- Change the database configuration as per your need in the application.properties
+- Build the project using maven/eclipse
