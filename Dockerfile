@@ -1,7 +1,7 @@
 FROM openjdk:8
 
 #COPY application jar file
-ADD target/opentica-spring-boot-demo.jar opentica-spring-boot-demo.jar
+ADD target/inventory-service-0.0.1-SNAPSHOT.jar opentica-spring-boot-demo.jar
 
 #EXTRACT APPD JAVA AGENT
 RUN mkdir -p /sharedFiles/AppServerAgent
