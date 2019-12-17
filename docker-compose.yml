@@ -2,7 +2,7 @@ version: "3.7"
 
 
 services:
-  zookeeper:
+  zookeeper: 
     image: zookeeper
     container_name: zookeeper
     restart: always
@@ -39,4 +39,4 @@ services:
   inventory-java-app:
       build: .
       ports:
-        - "8080:8080"  
+        - "8080:8080"
