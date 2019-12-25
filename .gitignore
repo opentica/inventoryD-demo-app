@@ -6,3 +6,6 @@ AppServerAgent.zip
 .project
 .settings/
 /target/
+inventoryservice/AppServerAgent.zip
+paymentservice/AppServerAgent.zip
+purchaseservice/AppServerAgent.zip
