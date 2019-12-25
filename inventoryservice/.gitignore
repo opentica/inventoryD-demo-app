@@ -1,0 +1,7 @@
+target/*
+!target/inventory-service-0.0.1-SNAPSHOT.jar
+AppServerAgent.zip
+.DS_Store
+.classpath
+.project
+.settings/
