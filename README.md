@@ -14,7 +14,7 @@ Copy this AppServerAgen.zip in inventoryservice, paymentservice & purchaseservic
 Above command will build all applications and deploy containers
 
 
-#Application: inventoryservice
+# Application: inventoryservice
 - This application is to maintain the inventory of the application using CRUD operations
 
 # Test App Rest APIs
@@ -48,7 +48,7 @@ Delete Specific Product: DELETE Method with http://localhost:8080/api/product/de
 
 Delete All Products: Delete method with URL http://localhost:8080/api/product/deleteAll
 
-#Application: purchaseservice
+# Application: purchaseservice
 - This application is to purchase the product
 - This service internally consumes 'paymentservice'
 
@@ -61,7 +61,7 @@ Request Body:
 }
 ```
 
-#Application: purchaseservice
+# Application: purchaseservice
 - This application is to purchase the product
 - This service internally consumes 'paymentservice'
 
