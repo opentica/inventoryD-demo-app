@@ -5,9 +5,3 @@ AppServerAgent.zip
 .classpath
 .project
 .settings/
-inventoryservice/target/**
-paymentservice/target/**
-purchaseservice/target/**
-
-
-

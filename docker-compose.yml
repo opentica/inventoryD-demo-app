@@ -37,18 +37,6 @@ services:
       # Password for root access
       MYSQL_ROOT_PASSWORD: 'password'
   inventory-java-app:
-      build: ./inventoryservice/
+      build: .
       ports:
-        - "8080:8080"
-  paymentservice-java-app:
-      container_name: paymentservice
-      build: ./paymentservice/
-      ports:
-        - "50821:50821"
-  purchaseservice-java-app:
-      container_name: purchaseservice
-      build: ./purchaseservice/
-      ports:
-        - "50822:50822"
-      depends_on:
-      - paymentservice-java-app
+        - "8080:8080"  
