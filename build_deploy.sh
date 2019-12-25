@@ -7,3 +7,4 @@ cd ..
 cd purchaseservice 
 mvn install
 cd ..
+docker-compose up --build
