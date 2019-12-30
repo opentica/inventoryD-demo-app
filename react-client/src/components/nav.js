@@ -60,10 +60,10 @@ const Nav = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>AppDynamics Performance Scenario</MenuItem>
-        <MenuItem onClick={handleClose}>Moogsoft with AppDynamcis Integration</MenuItem>
-        <MenuItem onClick={handleClose}>End to End AIPs</MenuItem>
-        <MenuItem onClick={handleClose} onClick={addProduct}>Add Product</MenuItem>
+        <MenuItem onClick={handleClose} disabled>AppDynamics Performance Scenario</MenuItem>
+        <MenuItem onClick={handleClose} disabled>Moogsoft with AppDynamcis Integration</MenuItem>
+        <MenuItem onClick={handleClose} disabled>End to End AIOPs </MenuItem>
+        <MenuItem onClick={handleClose} onClick={addProduct} >Add Product</MenuItem>
         <MenuItem onClick={handleClose} onClick={removeAllProdcuts} >Delete All Products</MenuItem>
       </Menu>
                 <Toolbar>
