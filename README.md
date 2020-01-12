@@ -45,7 +45,21 @@ Delete Specific Product: DELETE Method with http://localhost:8080/api/product/de
 "sellerId":2
 }
 ```
-
+Puchase a Specific Product: POST Method with http://localhost:8080/api/product/purchase
+```
+{
+	"productId": "1",
+	"customerId": "C1",
+	"price": 1200.5
+}
+```
+Pay for a specific Product: POST Method with http://localhost:8080/api/product/payment
+```
+{
+	"productId": "1",
+	"price": 1200.5
+}
+```
 Delete All Products: Delete method with URL http://localhost:8080/api/product/deleteAll
 
 # Application: purchaseservice
