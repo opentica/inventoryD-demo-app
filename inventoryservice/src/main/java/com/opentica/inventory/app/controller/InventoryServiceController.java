@@ -93,7 +93,7 @@ public class InventoryServiceController {
 	
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> purchase(ProductPurchase product) {
-		log.info("Product purchase started");
+		log.info("Product purchase started for product : " + product);
 		if(StringUtils.isBlank(product.getCustomerId()) || StringUtils.isBlank(product.getProductId())) {
 			log.error("Purchase order failed due to the invalid parameters");
 			throw new IllegalArgumentException("Invalid product details are provided");
