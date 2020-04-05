@@ -29,7 +29,7 @@ public class ProductPurchaseService {
 		RestTemplate restTemplate = new RestTemplate();
 		URI payUrl = new URI(payServiceUrl);
 		ResponseEntity<Boolean> result = restTemplate.postForEntity(payUrl, order, Boolean.class);
-		log.info("Product paument order is placed.");
+		log.info("Product payment order is initiated.");
 		return result.getBody();
 	}
 }

@@ -23,9 +23,9 @@ public class PaymentService {
 	@Autowired
 	KafkaTemplate<String, PaymentOrder> kafkaTemplate;
 	
-	public Boolean pay(PaymentOrder paymentOrder) {
-		log.info("Payment order is placed.");
+	public Boolean pay(PaymentOrder paymentOrder) {		
 		kafkaTemplate.send(paymentTopic, paymentOrder);
+		log.info("Payment order is placed successfully.");
 		return true;
 	}
 }

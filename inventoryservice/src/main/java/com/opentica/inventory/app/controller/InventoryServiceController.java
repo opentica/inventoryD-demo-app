@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +34,8 @@ import com.opentica.inventory.app.service.ProductPurchaseService;
 @RestController
 @RequestMapping("/api/product/")
 public class InventoryServiceController {
+	private static final Logger log = LoggerFactory.getLogger(InventoryServiceController.class);
+
 	@Autowired
 	private ProductRepository productRepository;
 
@@ -88,6 +93,11 @@ public class InventoryServiceController {
 	
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> purchase(ProductPurchase product) {
+		log.info("Product purchase started");
+		if(StringUtils.isBlank(product.getCustomerId()) || StringUtils.isBlank(product.getProductId())) {
+			log.error("Purchase order failed due to the invalid parameters");
+			throw new IllegalArgumentException("Invalid product details are provided");
+		}
 		PaymentOrder paymentOrder = new PaymentOrder();
 		paymentOrder.setPayment(product.getPrice());
 		paymentOrder.setProductId(product.getProductId());
@@ -101,9 +111,15 @@ public class InventoryServiceController {
 	}
 	
 	@RequestMapping(path="/payment", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> payment(PaymentOrder order) {
+	public ResponseEntity<Boolean> payment(PaymentOrder paymentOrder) {
+		log.info("Payment processing started");
+		log.info("Initiating a payment order");
+		if(paymentOrder.getPayment() < 0 || StringUtils.isBlank(paymentOrder.getProductId())) {
+			log.error("Payment order failed due to the invalid parameters");
+			throw new IllegalArgumentException("Invalid payment and product details are provided");
+		}
 		try {
-			return ResponseEntity.ok().body(paymentService.pay(order));
+			return ResponseEntity.ok().body(paymentService.pay(paymentOrder));
 		} catch (URISyntaxException e) {
 			//If the order fails
 			e.printStackTrace();
