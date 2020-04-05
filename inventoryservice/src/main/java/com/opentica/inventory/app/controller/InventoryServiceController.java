@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.opentica.inventory.app.bean.PaymentOrder;
@@ -92,7 +93,7 @@ public class InventoryServiceController {
 	}
 	
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> purchase(ProductPurchase product) {
+	public ResponseEntity<Boolean> purchase(@RequestParam ProductPurchase product) {
 		log.info("Product purchase started for product : " + product);
 		if(StringUtils.isBlank(product.getCustomerId()) || StringUtils.isBlank(product.getProductId())) {
 			log.error("Purchase order failed due to the invalid parameters");
@@ -111,7 +112,7 @@ public class InventoryServiceController {
 	}
 	
 	@RequestMapping(path="/payment", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> payment(PaymentOrder paymentOrder) {
+	public ResponseEntity<Boolean> payment(@RequestParam PaymentOrder paymentOrder) {
 		log.info("Payment processing started");
 		log.info("Initiating a payment order");
 		if(paymentOrder.getPayment() < 0 || StringUtils.isBlank(paymentOrder.getProductId())) {
