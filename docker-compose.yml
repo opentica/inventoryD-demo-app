@@ -40,11 +40,15 @@ services:
       build: ./inventoryservice/
       ports:
         - "8080:8080"
+      volumes:
+        - /var/log/optimiz:/var/log
   paymentservice-java-app:
       container_name: paymentservice
       build: ./paymentservice/
       ports:
         - "50821:50821"
+      volumes:
+        - /var/log/optimiz:/var/log
   purchaseservice-java-app:
       container_name: purchaseservice
       build: ./purchaseservice/
@@ -52,3 +56,5 @@ services:
         - "50822:50822"
       depends_on:
       - paymentservice-java-app
+      volumes:
+        - /var/log/optimiz:/var/log
