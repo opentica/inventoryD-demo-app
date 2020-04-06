@@ -1,9 +1,12 @@
 package com.optimiz.payment.model;
 
+import lombok.ToString;
+
 /**
  * Payment Order POJO for payment order
  *
  */
+@ToString
 public class PaymentOrder {
 	private String productId;
 

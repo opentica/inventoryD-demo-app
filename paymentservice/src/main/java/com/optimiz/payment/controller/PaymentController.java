@@ -27,7 +27,7 @@ public class PaymentController {
 	@RequestMapping(path="/pay", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> pay(@RequestParam PaymentOrder paymentOrder) {	
 		log.info("Initiating a payment order");
-		if(paymentOrder.getPayment() < 0 || StringUtils.isBlank(paymentOrder.getProductId())) {
+		if(!StringUtils.isBlank(paymentOrder.getProductId()) && paymentOrder.getProductId().equals("Z1")) {
 			log.error("Payment order failed due to the invalid parameters");
 			throw new IllegalArgumentException("Invalid payment and product details are provided");
 		}

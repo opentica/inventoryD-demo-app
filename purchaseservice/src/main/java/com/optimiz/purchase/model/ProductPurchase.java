@@ -1,9 +1,13 @@
 package com.optimiz.purchase.model;
 
+import lombok.Data;
+import lombok.ToString;
+
 /**
  * Product return details POJO
  *
  */
+@ToString
 public class ProductPurchase {
 	private String productId;
 	private String customerId;
