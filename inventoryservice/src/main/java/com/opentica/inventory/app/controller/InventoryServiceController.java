@@ -93,14 +93,14 @@ public class InventoryServiceController {
 	}
 	
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> purchase(@RequestParam ProductPurchase product) {
+	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) {
 		log.info("Product purchase started for product : " + product);
 		if(StringUtils.isBlank(product.getCustomerId()) || StringUtils.isBlank(product.getProductId())) {
 			log.error("Purchase order failed due to the invalid parameters");
 			throw new IllegalArgumentException("Invalid product details are provided");
 		}
 		PaymentOrder paymentOrder = new PaymentOrder();
-		paymentOrder.setPayment(product.getPrice());
+		paymentOrder.setPrice(product.getPrice());
 		paymentOrder.setProductId(product.getProductId());
 		try {
 			return ResponseEntity.ok().body(purchaseService.purchase(product));
@@ -112,10 +112,10 @@ public class InventoryServiceController {
 	}
 	
 	@RequestMapping(path="/payment", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> payment(@RequestParam PaymentOrder paymentOrder) {
+	public ResponseEntity<Boolean> payment(@RequestBody PaymentOrder paymentOrder) {
 		log.info("Payment processing started");
-		log.info("Initiating a payment order");
-		if(paymentOrder.getPayment() < 0 || StringUtils.isBlank(paymentOrder.getProductId())) {
+		log.info("Initiating a payment order : " + paymentOrder);
+		if(paymentOrder.getPrice() < 0 || StringUtils.isBlank(paymentOrder.getProductId())) {
 			log.error("Payment order failed due to the invalid parameters");
 			throw new IllegalArgumentException("Invalid payment and product details are provided");
 		}

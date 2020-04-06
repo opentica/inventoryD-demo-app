@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ public class PaymentController {
 	private PaymentService paymentService;
 	
 	@RequestMapping(path="/pay", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> pay(PaymentOrder paymentOrder) {	
+	public ResponseEntity<Boolean> pay(@RequestBody PaymentOrder paymentOrder) {	
 		log.info("Initiating a payment order : " + paymentOrder);
 		if(!StringUtils.isBlank(paymentOrder.getProductId()) && paymentOrder.getProductId().equals("Z1")) {
 			log.error("Payment order failed due to the invalid parameters");

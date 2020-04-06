@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +31,7 @@ public class ProductPurchaseController {
 	private ProductPurchaseService purchaseService;
 	
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> purchase(@RequestParam ProductPurchase product) {
+	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) {
 		log.info("Initiating a purchase order for order : " + product);
 		if(!StringUtils.isBlank(product.getProductId()) && product.getProductId().equals("Z1")) {
 			log.error("Purchase order failed due to the invalid parameters");
