@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.base.Stopwatch;
 import com.opentica.inventory.app.bean.PaymentOrder;
 import com.opentica.inventory.app.bean.ProductInfo;
 import com.opentica.inventory.app.bean.ProductPurchase;
@@ -94,6 +95,7 @@ public class InventoryServiceController {
 	
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) {
+		Stopwatch stopwatch = Stopwatch.createStarted();
 		log.info("Product purchase started for product : " + product);
 		if(StringUtils.isBlank(product.getCustomerId()) || StringUtils.isBlank(product.getProductId())) {
 			log.error("Purchase order failed due to the invalid parameters");
@@ -103,9 +105,13 @@ public class InventoryServiceController {
 		paymentOrder.setPrice(product.getPrice());
 		paymentOrder.setProductId(product.getProductId());
 		try {
+			stopwatch.stop();
+			log.info("Time taken for product purchase API execution : " + stopwatch);
 			return ResponseEntity.ok().body(purchaseService.purchase(product));
+			
 		} catch (URISyntaxException e) {
 			//If the order fails
+			log.error("Product purchase failed for product : " + product);
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 		}

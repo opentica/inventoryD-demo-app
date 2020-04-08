@@ -28,7 +28,7 @@ public class ProductPurchaseService {
 		RestTemplate restTemplate = new RestTemplate();
 		URI payUrl = new URI(purchaseServiceUrl);
 		ResponseEntity<Boolean> result = restTemplate.postForEntity(payUrl, product, Boolean.class);
-		log.info("Product purchase order is placed.");
+		log.info("Product purchase order is placed for product " + product);
 		return result.getBody();
 	}
 }

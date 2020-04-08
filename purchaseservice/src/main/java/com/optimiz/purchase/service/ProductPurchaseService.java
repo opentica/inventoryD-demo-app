@@ -25,11 +25,11 @@ public class ProductPurchaseService {
 	private static final Logger log = LoggerFactory.getLogger(ProductPurchaseService.class);
 
 	public Boolean purchase(ProductPurchase product, PaymentOrder order) throws URISyntaxException {
-		log.info("Product purchase order is placed.");
+		log.info("Product purchase order is placed for product : " + order);
 		RestTemplate restTemplate = new RestTemplate();
 		URI payUrl = new URI(payServiceUrl);
 		ResponseEntity<Boolean> result = restTemplate.postForEntity(payUrl, order, Boolean.class);
-		log.info("Product payment order is initiated.");
+		log.info("Product payment order is initiated for product : " + product);
 		return result.getBody();
 	}
 }

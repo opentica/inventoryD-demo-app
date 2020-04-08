@@ -11,7 +11,5 @@ import lombok.ToString;
 @ToString
 public class PaymentOrder {
 	private String productId;
-
 	private float price;
-
 }
