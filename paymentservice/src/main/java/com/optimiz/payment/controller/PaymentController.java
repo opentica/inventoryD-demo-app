@@ -27,13 +27,8 @@ public class PaymentController {
 	private PaymentService paymentService;
 
 	@RequestMapping(path="/pay", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> pay(@RequestBody PaymentOrder paymentOrder) throws SQLException {	
-		log.info("Initiating a payment order : " + paymentOrder);
-		if(!StringUtils.isBlank(paymentOrder.getProductId()) && paymentOrder.getProductId().equalsIgnoreCase("Z1")) {			
-			SQLException ex =  new SQLException("Database connection to host master-db-01 failed");
-			log.error("Payment order failed due to SQLException for order : " + paymentOrder, ex);
-		} 
-		
+	public ResponseEntity<Boolean> pay(@RequestBody PaymentOrder paymentOrder) {	
+		log.info("Initiating a payment order : " + paymentOrder);		
 		if(!StringUtils.isBlank(paymentOrder.getProductId()) && paymentOrder.getProductId().equalsIgnoreCase("T1")) {
 			try {
 				//Adding sleep for simulating a case to wait for 3 more seconds in special condition 

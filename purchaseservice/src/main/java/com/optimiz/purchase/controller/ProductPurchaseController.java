@@ -1,6 +1,7 @@
 package com.optimiz.purchase.controller;
 
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -31,8 +32,14 @@ public class ProductPurchaseController {
 	private ProductPurchaseService purchaseService;
 	
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
-	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) {
+	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) throws SQLException {
 		log.info("Initiating a purchase order for order : " + product);
+		if(!StringUtils.isBlank(product.getProductId()) && product.getProductId().equalsIgnoreCase("Z1")) {			
+			SQLException ex =  new SQLException("Database connection to host master-db-01 failed");
+			log.error("Purchase order failed due to SQLException for order : " + product, ex.getMessage());
+			throw ex;
+		} 
+		
 		PaymentOrder paymentOrder = new PaymentOrder();
 		paymentOrder.setPayment(product.getPrice());
 		paymentOrder.setProductId(product.getProductId());
