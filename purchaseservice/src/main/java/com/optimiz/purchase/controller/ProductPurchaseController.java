@@ -36,7 +36,7 @@ public class ProductPurchaseController {
 		log.info("Initiating a purchase order for order : " + product);
 		if(!StringUtils.isBlank(product.getProductId()) && product.getProductId().equalsIgnoreCase("Z1")) {			
 			SQLException ex =  new SQLException("Database connection to host master-db-01 failed");
-			log.error("Purchase order failed due to SQLException for order : " + product, ex.getMessage());
+			log.error("Purchase order failed due to SQLException for order : " + product, ex);
 			throw ex;
 		} 
 		
