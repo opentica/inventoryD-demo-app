@@ -33,10 +33,6 @@ public class ProductPurchaseController {
 	@RequestMapping(path="/purchase", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) {
 		log.info("Initiating a purchase order for order : " + product);
-		if(!StringUtils.isBlank(product.getProductId()) && product.getProductId().equals("Z1")) {
-			log.error("Purchase order failed due to the invalid parameters");
-			throw new IllegalArgumentException("Invalid product details are provided");
-		}
 		PaymentOrder paymentOrder = new PaymentOrder();
 		paymentOrder.setPayment(product.getPrice());
 		paymentOrder.setProductId(product.getProductId());
