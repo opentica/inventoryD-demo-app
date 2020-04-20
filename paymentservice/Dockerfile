@@ -8,6 +8,9 @@ RUN mkdir -p /sharedFiles/AppServerAgent
 COPY AppServerAgent.zip /sharedFiles/AppServerAgent.zip
 RUN unzip /sharedFiles/AppServerAgent.zip -d /sharedFiles/AppServerAgent/
 
+#COPY the Elastic APM agent
+COPY elastic-apm-agent-1.15.0.jar /sharedFiles/elastic-apm-agent-1.15.0.jar
+
 CMD ["tail","-f","/dev/null"]
 
 #COPY STARTUP script
