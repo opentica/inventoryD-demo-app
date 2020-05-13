@@ -148,9 +148,9 @@ public class InventoryServiceController {
 	 * @throws URISyntaxException
 	 */
 	@GetMapping(path="/listProductCatalog") 
-	public void getProducts() throws URISyntaxException {
+	public ResponseEntity<String> getProducts() throws URISyntaxException {
 		log.info("listProductCatalog API is invoked");
-		productService.getProducts();
+		return productService.getProducts();
 	}
 	
 	/**
