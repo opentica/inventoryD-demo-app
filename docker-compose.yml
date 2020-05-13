@@ -40,6 +40,8 @@ services:
       build: ./inventoryservice/
       ports:
         - "8080:8080"
+      env_file:
+        - ./.env
       volumes:
         - /var/log/optimiz:/var/log
   paymentservice-java-app:
@@ -47,6 +49,8 @@ services:
       build: ./paymentservice/
       ports:
         - "50821:50821"
+      env_file:
+        - ./.env
       volumes:
         - /var/log/optimiz:/var/log
   purchaseservice-java-app:
@@ -54,7 +58,27 @@ services:
       build: ./purchaseservice/
       ports:
         - "50822:50822"
+      env_file:
+        - ./.env
       depends_on:
       - paymentservice-java-app
+      volumes:
+        - /var/log/optimiz:/var/log
+  productservice-java-app:
+      container_name: productservice
+      build: ./productservice/
+      ports:
+        - "50832:50832"
+      env_file:
+        - ./.env
+      volumes:
+        - /var/log/optimiz:/var/log
+  customerservice-java-app:
+      container_name: customerservice
+      build: ./customerservice/
+      ports:
+        - "50831:50831"
+      env_file:
+        - ./.env
       volumes:
         - /var/log/optimiz:/var/log

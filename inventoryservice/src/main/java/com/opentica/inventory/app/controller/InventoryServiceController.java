@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.base.Stopwatch;
@@ -26,8 +25,10 @@ import com.opentica.inventory.app.bean.ProductInfo;
 import com.opentica.inventory.app.bean.ProductPurchase;
 import com.opentica.inventory.app.bean.ProductRepository;
 import com.opentica.inventory.app.helper.MessageProducerHelper;
+import com.opentica.inventory.app.service.CustomerService;
 import com.opentica.inventory.app.service.PaymentService;
 import com.opentica.inventory.app.service.ProductPurchaseService;
+import com.opentica.inventory.app.service.ProductService;
 
 /**
  * Controller for CRUD operations on the product inventory
@@ -49,7 +50,13 @@ public class InventoryServiceController {
 
 	@Autowired
 	private ProductPurchaseService purchaseService;
-
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private ProductService productService;
+	
 	/**
 	 * API to get list of all available products
 	 * 
@@ -133,4 +140,27 @@ public class InventoryServiceController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 		}
 	}
+	
+	/**
+	 * Get all products from the catalog
+	 * 
+	 * @return
+	 * @throws URISyntaxException
+	 */
+	@GetMapping(path="/listProductCatalog") 
+	public void getProducts() throws URISyntaxException {
+		log.info("listProductCatalog API is invoked");
+		productService.getProducts();
+	}
+	
+	/**
+	 * Get all customers in the system
+	 * 
+	 * @return
+	 * @throws URISyntaxException
+	 */
+	@GetMapping(path="/getCustomers") 
+	public ResponseEntity<String> getCustomerList() throws URISyntaxException {
+		return customerService.getCusomers();
+	}	
 }

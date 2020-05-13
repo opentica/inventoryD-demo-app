@@ -7,4 +7,11 @@ cd ..
 cd purchaseservice 
 mvn install
 cd ..
+cd productservice 
+mvn install
+cd ..
+cd customerservice 
+mvn install
+cd ..
+
 docker-compose up --build
