@@ -88,14 +88,16 @@ Request Body:
 }
 ```
 
+# Application: customerservice
 Get the customer list available in the application: http://<aws_instance_public_ip>:8080/api/product/getcustomers
 
+# Application: productservice
 Get the product catalog available in the application: GET method http://<aws_instance_public_ip>:8080/api/product/listproductcatalog
 
-How to build and deploy services?
+# How to build and deploy services?
 - Run ./build_deploy.sh script to build and deploy all services
 
-How to toggle in APPD or ELK?
+# How to toggle in APPD or ELK?
 - open .env file in the repo's base location and edit environment variable IS_APPD. Set IS_APPD=1 if you want to use APPD for monitoring or IS_APPD=0 for ELK APM moniroting
 
 # To Build the project from source file
