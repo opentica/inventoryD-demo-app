@@ -94,7 +94,7 @@ Get the customer list available in the application: http://<aws_instance_public_
 # Application: productservice
 Get the product catalog available in the application: GET method http://<aws_instance_public_ip>:8080/api/product/listproductcatalog
 
-# How to build and deploy services?
+# How to build and deploy services as containers?
 - Run ./build_deploy.sh script to build and deploy all services
 
 # How to toggle in APPD or ELK?
