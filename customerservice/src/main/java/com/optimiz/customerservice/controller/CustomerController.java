@@ -18,21 +18,8 @@ public class CustomerController {
 	public List<Customer> getCustomerList() {
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(new Customer("Tom", 10001, "Canada"));
-		customerList.add(new Customer("Andy", 10001, "Canada"));
-		
-		/*System.out.println("Getting product details.");
-		RestTemplate restTemplate = new RestTemplate();
-		URI productUrl = null;
-		try {
-			productUrl = new URI("http://localhost:50832/productservice/getProducts");
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ResponseEntity<String> result = restTemplate.getForEntity(productUrl, String.class);
-		System.out.println("Got product details.");
-		//return result;
-		*/
+		customerList.add(new Customer("Andy", 10005, "Canada"));
+		customerList.add(new Customer("Tina", 10006, "Canada"));
 		return customerList;
 	}
 }
