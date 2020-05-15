@@ -18,6 +18,6 @@ else
      -Delastic.apm.application_packages=com.optimiz"
 fi	 
 
-echo JAVA_OPTS : 
+echo JAVA_OPTS : ${JAVA_OPTS} 
 
 java  ${JAVA_OPTS} -jar opentica-purchaseservice-demo.jar
