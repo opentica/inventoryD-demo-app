@@ -35,7 +35,7 @@ public class ProductPurchaseController {
 	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) throws SQLException {
 		log.info("Initiating a purchase order for order : " + product);
 		if(!StringUtils.isBlank(product.getProductId()) && product.getProductId().equalsIgnoreCase("Z1")) {			
-			SQLException ex =  new SQLException("Database connection to host master-db-01 failed");
+			SQLException ex =  new SQLException("Database connection to host InventoryDB failed");
 			log.error("Purchase order failed due to SQLException for order : " + product, ex);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 		} 
