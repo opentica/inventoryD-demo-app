@@ -7,7 +7,7 @@ then
 	echo "Starting with AppDynamic configurartion settings"
 	APPD_OPTS="-javaagent:/sharedFiles/AppServerAgent/javaagent.jar"
 	APPD_OPTS="${APPD_OPTS} -Dappdynamics.agent.applicationName=inventoryOsamaDocker"
-	APPD_OPTS="${APPD_OPTS} -Dappdynamics.agent.tierName=payment"
+	APPD_OPTS="${APPD_OPTS} -Dappdynamics.agent.tierName=customerservice"
 	APPD_OPTS="${APPD_OPTS} -Dappdynamics.agent.nodeName=customer-docker-node"
         APPD_OPTS="${APPD_OPTS} -Dappdynamics.controller.hostName=172.31.0.107"
 	APPD_OPTS="${APPD_OPTS} -Dappdynamics.controller.port=8090"

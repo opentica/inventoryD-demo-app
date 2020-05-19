@@ -12,5 +12,6 @@ import lombok.ToString;
 public class ProductPurchase {
 	private String productId;
 	private String customerId;
+	private String productName;
 	private float price;
 }

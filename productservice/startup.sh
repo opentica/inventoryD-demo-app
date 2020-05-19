@@ -28,4 +28,3 @@ fi
 echo JAVA_OPTS : ${JAVA_OPTS}
 
 java  ${JAVA_OPTS} -jar productservice.jar
-
