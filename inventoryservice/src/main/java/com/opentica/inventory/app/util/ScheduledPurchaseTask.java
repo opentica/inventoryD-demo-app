@@ -20,11 +20,11 @@ import org.springframework.web.client.RestTemplate;
 import com.opentica.inventory.app.bean.ProductPurchase;
 import com.opentica.inventory.app.service.ProductPurchaseService;
 
-@Component
-@EnableAsync
-@EnableScheduling
+//@Component
+//@EnableAsync
+//@EnableScheduling
 public class ScheduledPurchaseTask {
-	@Value("${inventory.service.purchase.url}")
+	/*@Value("${inventory.service.purchase.url}")
 	private String inventoryServicePurchaseUrl;
 
 	private static final Logger log = LoggerFactory.getLogger(ScheduledPurchaseTask.class);
@@ -38,11 +38,6 @@ public class ScheduledPurchaseTask {
 		return list;
 	}
 
-	/**
-	 * Scheduled execution for the random product purchase scenario
-	 * 
-	 * @throws URISyntaxException
-	 */
 	// 30 seconds delay
 	@Scheduled(fixedDelay = 30000)
 	public void scheduledPurchase() throws URISyntaxException {
@@ -56,12 +51,6 @@ public class ScheduledPurchaseTask {
 		log.info("Starting the product purchase : " + productPurchase);
 		this.purchase(productPurchase);
 	}
-
-	/**
-	 * Scheduled execution for the failure usecase scenario
-	 * 
-	 * @throws URISyntaxException
-	 */
 	// 30 seconds delay
 	@Scheduled(fixedDelay = 30000)
 	public void scheduledFailurePurchase() throws URISyntaxException {
@@ -81,6 +70,7 @@ public class ScheduledPurchaseTask {
 		RestTemplate restTemplate = new RestTemplate();
 		URI payUrl = new URI(inventoryServicePurchaseUrl);
 		ResponseEntity<Boolean> result = restTemplate.postForEntity(payUrl, product, Boolean.class);
-		log.info("Product purchase order is placed for product " + product)
+		log.info("Product purchase order is placed for product " + product);ō
 	}
+	*/
 }
