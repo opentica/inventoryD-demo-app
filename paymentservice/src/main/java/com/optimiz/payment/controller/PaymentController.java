@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,12 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
 
-	@RequestMapping(path="/pay", method=RequestMethod.POST)
+	@GetMapping(path="/") 
+	public void getHealthCheck() {
+		log.info("Health check is successful");
+	}
+	
+	@RequestMapping(path="/paymentservice/pay", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> pay(@RequestBody PaymentOrder paymentOrder) {	
 		log.info("Initiating a payment order : " + paymentOrder);		
 		if(!StringUtils.isBlank(paymentOrder.getProductId()) && paymentOrder.getProductId().equalsIgnoreCase("T1")) {

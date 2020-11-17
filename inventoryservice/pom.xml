@@ -18,8 +18,8 @@
 	
 	<properties>
 	<spring-cloud-gcp.version>1.0.0.RELEASE</spring-cloud-gcp.version>
-<spring-cloud-k8s.version>0.3.0.RELEASE</spring-cloud-k8s.version>
-<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+	<spring-cloud-k8s.version>0.3.0.RELEASE</spring-cloud-k8s.version>
+	<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 	<java.version>1.8</java.version>
 	</properties>
 	
@@ -95,20 +95,18 @@
 	</dependencies>
 
 	
-	<build>
-	
+	<build>	
 		<plugins>
-		
-		        <plugin>
-          <groupId>com.google.cloud.tools</groupId>
-          <artifactId>appengine-maven-plugin</artifactId>
-          <version>1.3.2</version>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+			<version>1.3.2</version>
         </plugin>
 		
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
 		</plugins>
 	</build>
 </project>

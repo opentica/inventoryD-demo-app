@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +32,12 @@ public class ProductPurchaseController {
 	@Autowired
 	private ProductPurchaseService purchaseService;
 	
-	@RequestMapping(path="/purchase", method=RequestMethod.POST)
+	@GetMapping(path="/") 
+	public void getHealthCheck() {
+		log.info("Health check is successful");
+	}
+	
+	@RequestMapping(path="/purchaseservice/purchase", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) throws SQLException {
 		log.info("Initiating a purchase order for order : " + product);
 		if(!StringUtils.isBlank(product.getProductId()) && product.getProductId().equalsIgnoreCase("Z1")) {			

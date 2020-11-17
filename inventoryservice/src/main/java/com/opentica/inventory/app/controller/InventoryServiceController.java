@@ -57,6 +57,11 @@ public class InventoryServiceController {
 	@Autowired
 	private ProductService productService;
 	
+	@GetMapping(path="/") 
+	public void getHealthCheck() {
+		log.info("Health check is successful!");
+	}
+	
 	/**
 	 * API to get list of all available products
 	 * 

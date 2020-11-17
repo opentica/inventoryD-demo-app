@@ -23,7 +23,7 @@ public class ProductService {
 		log.info("Getting product details.");
 		RestTemplate restTemplate = new RestTemplate();
 		URI productUrl = new URI(productServiceUrl);
-		log.info("Invoking API..");
+		log.info("Invoking API : {}", productServiceUrl);
 		ResponseEntity<String> result = restTemplate.getForEntity(productUrl, String.class);
 		log.info("Got product details.");
 		return result;
