@@ -35,7 +35,6 @@ import com.opentica.inventory.app.service.ProductService;
  *
  */
 @RestController
-@RequestMapping("/api/product/")
 public class InventoryServiceController {
 	private static final Logger log = LoggerFactory.getLogger(InventoryServiceController.class);
 
@@ -67,7 +66,7 @@ public class InventoryServiceController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/getProducts")
+	@GetMapping("/api/product/getProducts")
 	public List<ProductInfo> getAllProducts() {
 		return productRepository.findAll();
 	}
@@ -78,10 +77,9 @@ public class InventoryServiceController {
 	 * @param productInfo
 	 * @return
 	 */
-	@PostMapping("/addProduct")
+	@PostMapping("/api/product/addProduct")
 	public ProductInfo addProduct(@Valid @RequestBody ProductInfo productInfo) {
 		ProductInfo info =  productRepository.save(productInfo);
-	    messageProducerHelper.sendProductInfo(info);
 	    return info;
 	}
 	
@@ -90,7 +88,7 @@ public class InventoryServiceController {
 	 * 
 	 * @param productInfo
 	 */
-	@DeleteMapping("/deleteProduct")
+	@DeleteMapping("/api/product/deleteProduct")
 	public void deleteProuct(@Valid @RequestBody ProductInfo productInfo) {
 		productRepository.delete(productInfo);
 	}
@@ -100,12 +98,12 @@ public class InventoryServiceController {
 	 * 
 	 * @param productInfo
 	 */
-	@DeleteMapping("/deleteAll")
+	@DeleteMapping("/api/product/deleteAll")
 	public void deleteAll() {
 		productRepository.deleteAll();
 	}
 	
-	@RequestMapping(path="/purchase", method=RequestMethod.POST)
+	@RequestMapping(path="/api/product/purchase", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> purchase(@RequestBody ProductPurchase product) {
 		Stopwatch stopwatch = Stopwatch.createStarted();
 		log.info("Product purchase started for product : " + product);
@@ -129,7 +127,7 @@ public class InventoryServiceController {
 		}
 	}
 	
-	@RequestMapping(path="/payment", method=RequestMethod.POST)
+	@RequestMapping(path="/api/product/payment", method=RequestMethod.POST)
 	public ResponseEntity<Boolean> payment(@RequestBody PaymentOrder paymentOrder) {
 		log.info("Payment processing started");
 		log.info("Initiating a payment order : " + paymentOrder);
@@ -152,10 +150,11 @@ public class InventoryServiceController {
 	 * @return
 	 * @throws URISyntaxException
 	 */
-	@GetMapping(path="/listProductCatalog") 
+	@GetMapping(path="/api/product/listProductCatalog") 
 	public ResponseEntity<String> getProducts() throws URISyntaxException {
 		log.info("listProductCatalog API is invoked");
-		return productService.getProducts();
+		ResponseEntity<String> response = productService.getProducts();
+		return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
 	}
 	
 	/**
@@ -164,8 +163,9 @@ public class InventoryServiceController {
 	 * @return
 	 * @throws URISyntaxException
 	 */
-	@GetMapping(path="/getCustomers") 
+	@GetMapping(path="/api/product/getCustomers") 
 	public ResponseEntity<String> getCustomerList() throws URISyntaxException {
-		return customerService.getCusomers();
+		ResponseEntity<String> response = customerService.getCusomers();
+		return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
 	}	
 }

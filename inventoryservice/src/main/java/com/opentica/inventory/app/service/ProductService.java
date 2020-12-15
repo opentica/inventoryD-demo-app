@@ -25,7 +25,7 @@ public class ProductService {
 		URI productUrl = new URI(productServiceUrl);
 		log.info("Invoking API : {}", productServiceUrl);
 		ResponseEntity<String> result = restTemplate.getForEntity(productUrl, String.class);
-		log.info("Got product details.");
+		log.info("Got product details : " + result.getBody());
 		return result;
 	}
 }

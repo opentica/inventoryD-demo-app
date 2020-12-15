@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.optimiz.payment.config.KafkaProducerConfig;
 import com.optimiz.payment.model.PaymentOrder;
 import com.optimiz.payment.service.PaymentService;
 
@@ -45,12 +46,18 @@ public class PaymentController {
 				e.printStackTrace();
 			}
 		}
-		
+		log.info("Placing payment order");
+		messagingGateway.sendToPubsub(paymentOrder.toString());		
 		return ResponseEntity.ok().body(paymentService.pay(paymentOrder));		
 	}
 
+	@Autowired
+	private KafkaProducerConfig.PubsubOutboundGateway messagingGateway;
+	
 	@RequestMapping(path="/test", method=RequestMethod.GET)
 	public ResponseEntity<Boolean> test() {
-		return ResponseEntity.ok().body(paymentService.pay(null));	
-	}
+		messagingGateway.sendToPubsub("Test-Message");
+		log.info("Test message sent");
+		return ResponseEntity.ok().body(paymentService.pay(null));
+	}	
 }

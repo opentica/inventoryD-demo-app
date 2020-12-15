@@ -23,9 +23,7 @@ public class PaymentService {
 	@Autowired
 	KafkaTemplate<String, PaymentOrder> kafkaTemplate;
 	
-	public Boolean pay(PaymentOrder paymentOrder) {
-		//TODO: disabling kafka for GCP environment temporarily
-		//kafkaTemplate.send(paymentTopic, paymentOrder);
+	public Boolean pay(PaymentOrder paymentOrder) {		
 		log.info("Payment order is placed successfully.");
 		return true;
 	}

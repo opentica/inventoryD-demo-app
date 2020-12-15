@@ -22,7 +22,7 @@ public class CustomerService {
 		RestTemplate restTemplate = new RestTemplate();
 		URI customerUrl = new URI(customerServiceUrl);
 		ResponseEntity<String> result = restTemplate.getForEntity(customerUrl, String.class);
-		log.info("Got customer details.");
+		log.info("Got customer details : " + result);
 		return result;
 	}
 }
