@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: paymentservice
+  template:
+    metadata:
+      labels:
+        run: paymentservice
+    spec:
+      containers:
+      - image: gcr.io/optimiz-lab/paymentservice:v15
+        imagePullPolicy: IfNotPresent
+        name: paymentservice
+        ports:
+        - containerPort: 50821
+          protocol: TCP

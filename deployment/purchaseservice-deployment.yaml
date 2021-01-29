@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: purchaseservice
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: purchaseservice
+  template:
+    metadata:
+      labels:
+        run: purchaseservice
+    spec:
+      containers:
+      - image: gcr.io/optimiz-lab/purchaseservice:v3
+        imagePullPolicy: IfNotPresent
+        name: purchaseservice
+        ports:
+        - containerPort: 50822
+          protocol: TCP

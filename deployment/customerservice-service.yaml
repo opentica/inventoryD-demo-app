@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: customerservice
+  namespace: default
+spec:
+  ports:
+  - port: 50831
+    protocol: TCP
+    targetPort: 50831
+  selector:
+    run: customerservice
+  type: LoadBalancer

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: purchaseservice
+  namespace: default
+spec:
+  ports:
+  - port: 50822
+    protocol: TCP
+    targetPort: 50822
+  selector:
+    run: purchaseservice
+  type: LoadBalancer

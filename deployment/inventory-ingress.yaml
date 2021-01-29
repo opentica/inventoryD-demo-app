@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: inventory-ingress
+ 
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: customerservice
+          servicePort: 50831
+        path: /customerservice/*
+      - backend:
+          serviceName: productservice
+          servicePort: 50832
+        path: /productservice/*
+      - backend:
+          serviceName: purchaseservice
+          servicePort: 50822
+        path: /purchaseservice/*
+      - backend:
+          serviceName: paymentservice
+          servicePort: 50821
+        path: /paymentservice/*
+      - backend:
+          serviceName: inventoryservice
+          servicePort: 8080
+        path: /api/product/*
+

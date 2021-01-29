@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customerservice
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: customerservice
+  template:
+    metadata:
+      labels:
+        run: customerservice
+    spec:
+      containers:
+      - image: gcr.io/optimiz-lab/customerservice:v2
+        imagePullPolicy: IfNotPresent
+        name: customerservice
+        ports:
+        - containerPort: 50831
+          protocol: TCP

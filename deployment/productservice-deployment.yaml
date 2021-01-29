@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productservice
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: productservice
+  template:
+    metadata:
+      labels:
+        run: productservice
+    spec:
+      containers:
+      - image: gcr.io/optimiz-lab/productservice:v8
+        imagePullPolicy: IfNotPresent
+        name: productservice
+        ports:
+        - containerPort: 50832
+          protocol: TCP

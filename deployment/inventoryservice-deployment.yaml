@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventoryservice
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: inventoryservice
+  template:
+    metadata:
+      labels:
+        run: inventoryservice
+    spec:
+      containers:
+      - image: gcr.io/optimiz-lab/inventoryservice:v1
+        imagePullPolicy: IfNotPresent
+        name: inventoryservice
+        ports:
+        - containerPort: 8080
+          protocol: TCP
