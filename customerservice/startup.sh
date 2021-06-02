@@ -17,11 +17,13 @@ then
 
 	JAVA_OPTS="${JAVA_OPTS} ${APPD_OPTS}"	
 else
-	export LS_ACCESS_TOKEN=AL4U4cVLqCDzmPmwgiHq8wd4RRPunx1TYu22Pu22y/JHvov7YuyL0uJmsyKF1LXGZQNphiGz3pSg6HqBP28GYY5vxB8D/Os6Jb8JUVNI
-        export LS_SERVICE_NAME=customer
-        echo "Starting with OTHER APM configurartion settings"
-        JAVA_OPTS="${JAVA_OPTS} -javaagent:/sharedFiles/lightstep-opentelemetry-javaagent-0.16.0.jar"
-        echo JAVA_OPTS : ${JAVA_OPTS}
+	#IP address of the ELK APM server
+	echo "Starting with ELK APM configurartion settings"
+	JAVA_OPTS="${JAVA_OPTS} -javaagent:/sharedFiles/elastic-apm-agent-1.15.0.jar \
+	-Delastic.apm.service_name=paymentservice-application \
+	-Delastic.apm.server_url=http://3.21.32.43:8200 \
+	-Delastic.apm.secret_token= \
+	-Delastic.apm.application_packages=com.optimiz"
 fi	 
 
 echo JAVA_OPTS : ${JAVA_OPTS}

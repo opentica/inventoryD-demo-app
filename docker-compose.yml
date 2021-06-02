@@ -27,7 +27,7 @@ services:
     depends_on:
       - zookeeper
   mysql-standalone: 
-    image: 'mysql/mysql-server:latest'
+    image: 'mysql/mysql-server:5.7'
     environment:
       MYSQL_DATABASE: 'inventoryDB'
       # So you don't have to use root, but you can if you like
